@@ -25,7 +25,6 @@
   }, [user]);
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { useTelegram } from '@vkruglikov/react-telegram-web-app';
 import Profile from './pages/Profile';
 import AfkFarm from './pages/AfkFarm';
 import Wheel from './pages/Wheel';
@@ -36,7 +35,9 @@ import SnakeGame from './games/SnakeGame';
 import TetrisGame from './games/TetrisGame';
 
 function App() {
-  const { user } = useTelegram();
+  // Получаем пользователя из Telegram WebApp
+  const tg = window.Telegram?.WebApp;
+  const user = tg?.initDataUnsafe?.user;
   const [coins, setCoins] = useState(0);
   const [invitedCount, setInvitedCount] = useState(0);
   const [items, setItems] = useState([]);
